@@ -1,0 +1,21 @@
+{
+  "name": "backend-jobstreet-usermanagement-service",
+  "version": "1.0.0",
+  "description": "This repo is User Management Service of Jobstreet application backend.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "docker-compose -f docker-compose.dev.yml up",
+    "build": "esbuild --bundle src/index.js --outfile=build/app.js --minify --platform=node",
+    "start": "node src/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "esbuild": "^0.20.2",
+    "express": "^4.19.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

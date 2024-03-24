@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: backend-jobstreet-usermanagement-service-prod
+    image: backend-jobstreet-usermanagement-service-prod
+    build:
+      context: .
+      target: production

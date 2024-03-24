@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: backend-jobstreet-usermanagement-service-dev
+    image: backend-jobstreet-usermanagement-service-dev
+    build:
+      context: .
+      target: development
+    volumes:
+      - ./src:/app/src
+    ports:
+      - 4001:4001
