@@ -1,0 +1,29 @@
+syntax ="proto3";
+
+package notifyPackage;
+
+service notify{
+    rpc createPost(post) returns (ack) {};
+    rpc createAlert(alert) returns (ack) {};
+    rpc getNotifies(userName) returns (stream post);
+    rpc readPingStream(noParam) returns (stream alert) {};
+}
+
+message ack{
+    bool ack=1;
+}
+message post{
+    string jobName=1;
+    string companyName=2;
+    string location=3;
+}
+message alert{
+    repeated string keyword=1;
+    string city=2;
+    float radius=3;
+    string userName=4;
+}
+message userName{
+    string userName=1;
+}
+message noParam{}
