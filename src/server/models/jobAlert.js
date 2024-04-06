@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var alertSchema=new mongoose.Schema({
+const alertSchema=new mongoose.Schema({
     keyword: {type: [String], required: true},
     city: {type: String, required: true},
     radius: {type: Number, required: false},
@@ -8,6 +8,6 @@ var alertSchema=new mongoose.Schema({
     userName: {type: String, required: false}
 });
 //
-var jobAlert=mongoose.model("jobalerts",alertSchema);
+const jobAlert=mongoose.model("jobalerts",alertSchema);
 //
 module.exports=jobAlert;

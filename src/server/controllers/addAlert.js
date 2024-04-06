@@ -1,5 +1,5 @@
 'use strict'
-var jobAlert=require('../jobAlert');
+const jobAlert=require('../models/jobAlert');
 
 async function addAlert(notifyItem)
 {

@@ -5,7 +5,7 @@ package notifyPackage;
 service notify{
     rpc createPost(post) returns (ack) {};
     rpc createAlert(alert) returns (ack) {};
-    rpc getNotifies(userName) returns (stream post);
+    rpc getNotifies(userName) returns (stream post) {};
     rpc readPingStream(noParam) returns (stream alert) {};
 }
 

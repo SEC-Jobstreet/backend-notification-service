@@ -1,5 +1,5 @@
 'use strict'
-var dailyPost=require('../dailyPost');
+const dailyPost=require('../models/dailyPost');
 
 async function addDailyPost(postItem)
 {
