@@ -3,12 +3,18 @@ const jobAlert=require('../models/jobAlert');
 
 async function addAlert(notifyItem)
 {
-    await jobAlert.create({
-        keyword: notifyItem.keyword,
-        city: notifyItem.city,
-        radius: notifyItem.radius,
-        userName: notifyItem.userName
-    });
+    try {
+        const lowerCaseKeyword = notifyItem.keyword.map(keyword => keyword.toLowerCase());
+        await jobAlert.create({
+            keyword: lowerCaseKeyword,
+            city: notifyItem.city,
+            radius: notifyItem.radius,
+            userName: notifyItem.userName
+        });        
+    } catch (error) {
+        throw error;
+    }
+
 }
 
 module.exports=addAlert;

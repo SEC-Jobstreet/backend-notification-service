@@ -4,13 +4,21 @@ package notifyPackage;
 
 service notify{
     rpc createPost(post) returns (ack) {};
+    //
     rpc createAlert(alert) returns (ack) {};
+    rpc updateAlert(alert) returns (ack) {};
+    rpc getAlert(userName) returns (stream alert) {};
+    //
     rpc getNotifies(userName) returns (stream post) {};
-    rpc readPingStream(noParam) returns (stream alert) {};
+    //
+    rpc deleteAlert(id) returns (ack) {};
 }
 
 message ack{
     bool ack=1;
+}
+message id{
+    string id=1;
 }
 message post{
     string jobName=1;
@@ -18,10 +26,12 @@ message post{
     string location=3;
 }
 message alert{
-    repeated string keyword=1;
-    string city=2;
-    float radius=3;
-    string userName=4;
+    string id=1;
+    repeated string keyword=2;
+    string city=3;
+    float radius=4;
+    string userName=5;
+    bool on=6;
 }
 message userName{
     string userName=1;

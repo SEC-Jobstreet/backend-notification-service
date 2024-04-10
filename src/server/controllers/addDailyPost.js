@@ -3,7 +3,11 @@ const dailyPost=require('../models/dailyPost');
 
 async function addDailyPost(postItem)
 {
-    await dailyPost.create(postItem);
+    try {
+        await dailyPost.create(postItem);
+    } catch (error) {
+        throw error;        
+    }
 }
 
 module.exports=addDailyPost;
