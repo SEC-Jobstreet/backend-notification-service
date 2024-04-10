@@ -11,7 +11,7 @@ router.post('/alert', (req, res) =>
     client.createAlert({
         "keyword": keywords,
         "city": req.body.city,
-        "radius": parseFloat(req.body.radius),
+        "radius": req.body.radius,
         "userName": req.body.userName
     },(err, response)=>
     {
@@ -72,13 +72,9 @@ router.get('/notify/:userName', (req, res) => {
 });
 //get alerts
 router.get('/alert/:userName', (req, res) => {
-    const call = client.getAlert({
-        "userName": req.params.userName
-    });
-    const alerts=[]
-    call.on("data", a => {
-        alerts.push(a);
-    });
+    let call = client.getAlert({"userName": req.params.userName});
+    let alerts=[]
+    call.on("data", a => {alerts.push(a);});
     call.on("end", () => {
         if (alerts.length === 0) {
             res.status(200).json({ message: "no alert found" });
@@ -100,7 +96,7 @@ router.put('/alert', (req, res) =>
         "id": req.body.id,
         "keyword": keywords,
         "city": req.body.city,
-        "radius": req.body.radius,
+        "radius": req.body.radius,//grpc default NaN/other type into 0 & grpc auto parse string into num until meet a char
         "on": stringToBoolean(req.body.on)
     },(err, response)=>
     {

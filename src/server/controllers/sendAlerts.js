@@ -5,8 +5,9 @@ async function sendAlerts(name) {
     try {
         let alertList = await jobAlert.find({ userName: name });
         return alertList;
-    } catch (err) {
-        throw err;
+    } catch (error) {
+        console.log(error)
+        throw error;
     }
 }
 

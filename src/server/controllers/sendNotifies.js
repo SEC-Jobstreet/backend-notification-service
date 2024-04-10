@@ -14,8 +14,9 @@ async function sendNotifies(name) {
             postList.push(posts);
         }
         return postList;
-    } catch (err) {
-        throw err;
+    } catch (error) {
+        console.log(error);
+        throw error;
     }
 }
 

@@ -37,7 +37,7 @@ server.bindAsync(`0.0.0.0:${process.env.PORT||PORT}`, grpc.ServerCredentials.cre
 });
 //functions
 //upload alert
-function createAlert(call, callback) {
+async function createAlert(call, callback) {
     let notifyItem={
         "keyword": call.request.keyword,
         "city": call.request.city,
@@ -46,15 +46,12 @@ function createAlert(call, callback) {
     }
     let err;
     try {
-        addAlert(notifyItem);       
+        await addAlert(notifyItem);     
     } catch (error) {
         err=error;
+        callback(null, {"ack": false});        
     }
-    if(err)
-    {
-        callback(null, {"ack": false});
-    }
-    else
+    if(!err)
     {
         callback(null, {"ack": true});
     }
@@ -62,66 +59,92 @@ function createAlert(call, callback) {
 //get alert
 async function getAlert(call, callback) 
 {
-    let alertList=await sendAlerts(call.request.userName);
+    let alertList;
+    let err;
+    try {
+        alertList=await sendAlerts(call.request.userName);
+    } catch (error) {
+        err=error;
+    }
+    if(err)
+    {
+        call.write({message: "ERROR"});
+    }
     if(alertList.length>0)
     {   
-        alertList.forEach(a=>call.write(a))
+        alertList.forEach(a=>call.write(a));
     }
     call.end();
 };
 //upload new post
-function createPost(call, callback) 
+async function createPost(call, callback) 
 {
     let postItem={
         "jobName": call.request.jobName,
         "companyName": call.request.companyName,
         "location": call.request.location
     }
-    addDailyPost(postItem);
-    callback(null, {"ack": true});
+    let err;
+    try {
+        await addDailyPost(postItem);        
+    } catch (error) {
+        err=error;
+        callback(null, {"ack": false});
+    }
+    if(!err)
+    {
+        callback(null, {"ack": true});
+    }
 }
 //get matching new posts
 async function getNotifies(call, callback) {
-    let postList=await sendNotifies(call.request.userName);
+    let postList;
+    let err;
+    try {
+        postList=await sendNotifies(call.request.userName);        
+    } catch (error) {
+        err=error;
+    }
+    if(err)
+    {
+        call.write({message: "ERROR"});
+    }
     if(postList.length>0)
     {   
         postList.forEach(posts => {
-            posts.forEach(post=>call.write(post))
+            posts.forEach(post=>call.write(post));
         });
     }
     call.end();
 };
 //Update Alert
-function updateAlert(call, callback)
+async function updateAlert(call, callback)
 {
     let change={
         "id": call.request.id,
         "keyword": call.request.keyword,
         "city": call.request.city,
         "radius": call.request.radius,
-        "on": call.request.on
+        "on": call.request.on,
     }
     let err;
     try {
-        updateAlertById(change);
+        await updateAlertById(change);
     } catch (error) {
         err=error;
-    }
-    if(err)
-    {
         callback(null, {"ack": false});
     }
-    else
+    if(!err)
     {
         callback(null, {"ack": true});
     }
 };
 //delete an alert
-function deleteAlert(call, callback)
+async function deleteAlert(call, callback)
 {
     let err;
     try {
-        deleteAlertById(call.request.id,);
+        await deleteAlertById(call.request.id,);
     } catch (error) {
         err=error;
     }

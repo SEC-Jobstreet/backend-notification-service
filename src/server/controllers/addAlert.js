@@ -12,9 +12,9 @@ async function addAlert(notifyItem)
             userName: notifyItem.userName
         });        
     } catch (error) {
+        console.log(error);
         throw error;
     }
-
 }
 
 module.exports=addAlert;

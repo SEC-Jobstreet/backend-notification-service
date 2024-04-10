@@ -29,7 +29,7 @@ message alert{
     string id=1;
     repeated string keyword=2;
     string city=3;
-    float radius=4;
+    int32 radius=4;
     string userName=5;
     bool on=6;
 }
