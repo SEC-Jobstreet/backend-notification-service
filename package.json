@@ -4,6 +4,7 @@
   "description": "This repo is User Management Service of Jobstreet application backend.",
   "main": "index.js",
   "scripts": {
+    "compile-proto": "mkdir -p output && grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./output --grpc_out=grpc_js:./output -I ./src/server/protos notify.proto",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "docker-compose -f docker-compose.dev.yml up",
     "build": "esbuild --bundle src/index.js --outfile=build/app.js --minify --platform=node",
@@ -13,7 +14,9 @@
   "license": "ISC",
   "dependencies": {
     "esbuild": "^0.20.2",
-    "express": "^4.19.1"
+    "express": "^4.19.1",
+    "node-cron": "^3.0.3",
+    "nodemailer": "^6.9.13"
   },
   "devDependencies": {
     "@grpc/grpc-js": "^1.10.4",
