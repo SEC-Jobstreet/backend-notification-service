@@ -30,14 +30,17 @@ async function getUserList()
 //     {
 //         let content='';
 //         let matchJob=await sendNotifies(user.userName);
-//         matchJob.forEach(alert=>
+//         if(matchJob.length > 0)
 //         {
-//             alert.forEach(job=>
-//             {
-//                 content+=job.jobName+'\n'+job.companyName+'\n'+job.location+'\n\n';
-//             })
-//         });
-//         await sendEmail(user.email, content);
+//             matchJob.forEach(alert=>
+//                 {
+//                     alert.forEach(job=>
+//                     {
+//                         content+=job.jobName+'\n'+job.companyName+'\n'+job.location+'\n\n';
+//                     })
+//                 });
+//             await sendEmail(user.email, content);
+//         }
 //     });
 // });
 
@@ -50,14 +53,17 @@ cron.schedule('0 7 * * *', () =>
         {
             let content='';
             let matchJob=await sendNotifies(user.userName);
-            matchJob.forEach(alert=>
+            if(matchJob.length > 0)
             {
-                alert.forEach(job=>
-                {
-                    content+=job.jobName+'\n'+job.companyName+'\n'+job.location+'\n\n';
-                })
-            });
-            await sendEmail(user.email, content);
+                matchJob.forEach(alert=>
+                    {
+                        alert.forEach(job=>
+                        {
+                            content+=job.jobName+'\n'+job.companyName+'\n'+job.location+'\n\n';
+                        })
+                    });
+                await sendEmail(user.email, content);
+            }
         });
     });
 }, 

@@ -3,6 +3,7 @@
 const express=require('express');
 const router=express.Router();
 const client = require('../../client');
+const userEmail=require('../../../server/models/userEmail');
 //POST
 //create alert
 router.post('/alert', (req, res) =>
@@ -127,6 +128,12 @@ router.delete('/alert', (req, res) =>
             res.status(200).json({ message: response["ack"] });
         }        
     });
+});
+//Store userName and email
+router.post('/user', (req, res)=>
+{
+    userEmail.create({userName: req.body.userName, email: req.body.email});
+    res.status(200).json({ message: "ok" });
 });
 
 module.exports=router
