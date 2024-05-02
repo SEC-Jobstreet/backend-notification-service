@@ -29,20 +29,21 @@ server.bindAsync(`0.0.0.0:${process.env.PORT||PORT}`, grpc.ServerCredentials.cre
             "getAlert": getAlert,
             "updateAlert": updateAlert,
             "deleteAlert": deleteAlert,
-            "createPost": createPost,
-            "getNotifies": getNotifies
+            "createPost": createPost
         });
         console.log(`Server is running on Port: ${process.env.PORT||PORT}`);
     }
 });
 //functions
 //upload alert
-async function createAlert(call, callback) {
+async function createAlert(call, callback) 
+{
     let notifyItem={
         "keyword": call.request.keyword,
         "city": call.request.city,
         "radius": call.request.radius,
-        "userName": call.request.userName
+        "userName": call.request.userName,
+        "email": call.request.email
     }
     let err;
     try {
@@ -82,7 +83,9 @@ async function createPost(call, callback)
     let postItem={
         "jobName": call.request.jobName,
         "companyName": call.request.companyName,
-        "location": call.request.location
+        "location": call.request.location,
+        "description": call.request.description,
+        "url": call.request.url
     }
     let err;
     try {
@@ -96,27 +99,6 @@ async function createPost(call, callback)
         callback(null, {"ack": true});
     }
 }
-//get matching new posts
-async function getNotifies(call, callback) {
-    let postList;
-    let err;
-    try {
-        postList=await sendNotifies(call.request.userName);        
-    } catch (error) {
-        err=error;
-    }
-    if(err)
-    {
-        call.write({message: "ERROR"});
-    }
-    if(postList.length>0)
-    {   
-        postList.forEach(posts => {
-            posts.forEach(post=>call.write(post));
-        });
-    }
-    call.end();
-};
 //Update Alert
 async function updateAlert(call, callback)
 {
@@ -125,6 +107,8 @@ async function updateAlert(call, callback)
         "keyword": call.request.keyword,
         "city": call.request.city,
         "radius": call.request.radius,
+        "userName": call.request.userName,
+        "email": call.request.email,
         "on": call.request.on,
     }
     let err;

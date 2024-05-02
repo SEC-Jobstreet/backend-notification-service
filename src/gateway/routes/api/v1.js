@@ -3,7 +3,6 @@
 const express=require('express');
 const router=express.Router();
 const client = require('../../client');
-const userEmail=require('../../../server/models/userEmail');
 //POST
 //create alert
 router.post('/alert', (req, res) =>
@@ -13,7 +12,8 @@ router.post('/alert', (req, res) =>
         "keyword": keywords,
         "city": req.body.city,
         "radius": req.body.radius,
-        "userName": req.body.userName
+        "userName": req.body.userName,
+        "email": req.body.email
     },(err, response)=>
     {
         if(err)
@@ -32,7 +32,9 @@ router.post('/post', (req, res) =>
     client.createPost({
         "jobName": req.body.jobName,
         "companyName": req.body.companyName,
-        "location": req.body.location
+        "location": req.body.location,
+        "description": req.body.description,
+        "url": req.body.url
     },(err, response)=>
     {
         if(err)
@@ -46,31 +48,6 @@ router.post('/post', (req, res) =>
     });
 });
 //GET
-//get notifies
-router.get('/notify/:userName', (req, res) => {
-    const call = client.getNotifies({
-        "userName": req.params.userName
-    });
-    const matchList = [];
-    call.on("data", post => {
-        matchList.push(post);
-    });
-    call.on("end", () => {
-        if (matchList.length === 0) {
-            res.status(200).json({ message: "no match found" });
-        }
-        else 
-        {
-            const unique = matchList.filter((post, index, self) =>
-                index === self.findIndex(p =>
-                    p.jobName === post.jobName &&
-                    p.companyName === post.companyName &&
-                    p.location === post.location
-            ));
-            res.status(200).json({ matchList: unique });
-        }
-    });
-});
 //get alerts
 router.get('/alert/:userName', (req, res) => {
     let call = client.getAlert({"userName": req.params.userName});
@@ -98,6 +75,8 @@ router.put('/alert', (req, res) =>
         "keyword": keywords,
         "city": req.body.city,
         "radius": req.body.radius,//grpc default NaN/other type into 0 & grpc auto parse string into num until meet a char
+        "userName": req.body.userName,
+        "email": req.body.email,
         "on": stringToBoolean(req.body.on)
     },(err, response)=>
     {

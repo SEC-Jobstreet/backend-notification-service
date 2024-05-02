@@ -9,7 +9,8 @@ async function addAlert(notifyItem)
             keyword: lowerCaseKeyword,
             city: notifyItem.city,
             radius: notifyItem.radius,
-            userName: notifyItem.userName
+            userName: notifyItem.userName,
+            email: notifyItem.email
         });        
     } catch (error) {
         console.log(error);

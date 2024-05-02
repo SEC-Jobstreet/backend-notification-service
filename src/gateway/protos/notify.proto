@@ -9,8 +9,6 @@ service notify{
     rpc updateAlert(alert) returns (ack) {};
     rpc getAlert(userName) returns (stream alert) {};
     //
-    rpc getNotifies(userName) returns (stream post) {};
-    //
     rpc deleteAlert(id) returns (ack) {};
 }
 
@@ -24,6 +22,8 @@ message post{
     string jobName=1;
     string companyName=2;
     string location=3;
+    string description=4;
+    string url=5;
 }
 message alert{
     string id=1;
@@ -31,7 +31,8 @@ message alert{
     string city=3;
     int32 radius=4;
     string userName=5;
-    bool on=6;
+    string email=6;
+    bool on=7;
 }
 message userName{
     string userName=1;

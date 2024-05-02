@@ -9,8 +9,9 @@ async function updateAlertById(change) {
             keyword: change.keyword,
             city: change.city,
             radius: change.radius,
+            email: change.email,
             on: change.on,
-            userName: "NaN"
+            userName: change.userName
         });
 
         // Validate the instance

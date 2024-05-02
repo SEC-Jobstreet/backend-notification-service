@@ -5,6 +5,7 @@ const alertSchema=new mongoose.Schema({
     city: {type: String, required: true},
     radius: {type: Number, required: true},
     userName: {type: String, required: true},
+    email: {type: String, required: true},
     period: {type: String, default: "daily"},
     on: {type: Boolean, default: true},
     createDate: {type: Date, default: Date.now}
