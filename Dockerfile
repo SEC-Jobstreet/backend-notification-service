@@ -29,4 +29,5 @@ FROM node:20-alpine AS production
 COPY --from=builder /app/build .
 EXPOSE 4001
 # Start the app
-CMD node app.js
+# CMD node app.js
+CMD npm run start
