@@ -1,5 +1,5 @@
 FROM node:20-alpine AS development
-ENV NODE_ENV development
+ENV NODE_ENV=development
 # Add a work directory
 WORKDIR /app
 # Cache and Install dependencies
@@ -13,7 +13,7 @@ EXPOSE 4001
 CMD [ "npm", "start" ]
 
 FROM node:20-alpine AS builder
-ENV NODE_ENV production
+ENV NODE_ENV=production
 # Add a work directory
 WORKDIR /app
 # Cache and Install dependencies
