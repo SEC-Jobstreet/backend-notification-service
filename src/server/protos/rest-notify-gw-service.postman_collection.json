@@ -1,0 +1,267 @@
+{
+	"info": {
+		"_postman_id": "0b540daa-8f0b-4867-85f3-a03092cc2174",
+		"name": "rest-notify-gw-service",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Tests\" tab**\n\nTests help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/b5f280a7-4b09-48ec-857f-0a7ed99d7ef8/U2NyZWVuc2hvdCAyMDIzLTAzLTI3IGF0IDkuNDcuMjggUE0ucG5n\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) in \"Tests\" to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33360155"
+	},
+	"item": [
+		{
+			"name": "Get alert list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/api/v1/alert/user11",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"v1",
+						"alert",
+						"user11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create an alert",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "keyword",
+							"value": "test node",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "HCM",
+							"type": "text"
+						},
+						{
+							"key": "radius",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "userName",
+							"value": "user10",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "user10@gmail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/api/v1/alert",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"v1",
+						"alert"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update an alert",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "662f6669072db80842bf323c",
+							"type": "text"
+						},
+						{
+							"key": "keyword",
+							"value": "thursday test",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "HCM",
+							"type": "text"
+						},
+						{
+							"key": "radius",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "on",
+							"value": "false",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "taotenquang284@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "userName",
+							"value": "user11",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/api/v1/alert",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"v1",
+						"alert"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete an alert",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "661b4e6f79c0aadc85aa6056",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/api/v1/alert",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"v1",
+						"alert"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET job posts match all alerts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/api/v1/notify/user2",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"v1",
+						"notify",
+						"user2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Job post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "jobName",
+							"value": "NodeJs Developer",
+							"type": "text"
+						},
+						{
+							"key": "companyName",
+							"value": "Công Ty TNHH Aegona",
+							"type": "text"
+						},
+						{
+							"key": "location",
+							"value": "HCM",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "(Mức lương: 27 - 57 triệu VNĐ)* THE ROLEWe are looking for a talented full-stack web developer who can meet our technical bar, is willing to tackle challenging problems, and is a great fit for our open, driven, and collaborative team culture. Join our small but growing engineering team by making a significant impact when building our in-house products and solving complex problems from startups seeking our help.\n\nAS A Sr.\nFULL-STACK WEB DEVELOPER, YOU’LL BE RESPONSIBLE FOR\n\nDeveloping solutions for challenging projects.\nBuilding MVP experiments for new product ideas.\nHelping to architect front-end/backend frameworks.\nWorking well with other team members to make smart decisions.\nBeing able to deliver on time.\nChức vụ: Nhân viên/Chuyên viên\n\nHình thức làm việc: Toàn thời gian\n\nQuyền lợi được hưởng:\n\nCompetitive net salary\nPerformance and salary reviewed every 6 months.\nCompany trip: 1 time/year.\nYêu cầu bằng cấp (tối thiểu): Trung cấp - Nghề\n\nYêu cầu công việc:\n\nWHAT WE’RE LOOKING FOR FROM YOU\n\nA smart and driven developer motivated to build great products and learn new skills.\nGreat communication skills and a desire to collaborate with the team.\nStrong experience in building web applications.\nAn interest in taking on more responsibility and ownership over time.\nAbility to solve complex and challenging problems.\nTaking pride in your work with the ability to write clean code and tests.\nQUALIFICATIONS\nFrontend: Having strong experience with at least one of the major javascript frameworks such as React (preferred), Angular, Vue, and Ember.\nBackend: Having strong experience with at least one backend framework:Node.js framework is preferred or includes programming languages such as Python, Java, and Rust.\nExperience with building large, complex projects is a plus.\nWorking with open-source projects is a plus.\nExpertise in analytical and problem-solving skills is a big plus.\nExperience with Cloud platforms such as AWS is a must (Solution Architect Certificate is a big plus), and Google Cloud and Azure are a plus.\nExperience with Continuous Integration/Deployment (such as CircleCI, GoCD, Jenkins)\nExperience with Kubernetes (k8s, EKS), Jenkins, Terraform.\nGood verbal English communication skills, especially in the global software development environment.\nHave several years of working on a product that has gone into production and is large enough (engineer team size is at least 10 people).\nBENEFITS AND PERKS\nCompetitive net salary\nAt least one month's salary bonus based on your performance every year.\nPerformance and salary reviewed every 6 months.\nFlexible time off (everyone needs to be responsible for their schedule, we do not count the days off).\nAll public holidays.\nAnnual health check.\nPremium health insurance from Bao Viet.\nStandard social insurance, health insurance, and unemployment insurance.\nCompany trip: 1 time/year.\nMini team building: 3-4 times/year.\nReimbursement for English and technical courses/books.\nOffice entertainment allowance\nFree snacks and drinks.\nWeekly happy hour.\nPrivate English class.\nFootball, badminton, and book clubs\nYêu cầu giới tính: Nam/Nữ\n\nNgành nghề: CNTT - Phần Mềm,Full-stack,NodeJS",
+							"type": "text"
+						},
+						{
+							"key": "url",
+							"value": "https://www.jobstreet.vn/j?sp=search&trigger_source=serp&q=node&l=",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/api/v1/post",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"v1",
+						"post"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}
