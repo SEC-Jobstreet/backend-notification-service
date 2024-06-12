@@ -2,9 +2,9 @@ name: Backend Notification Service CICD
 
 on:
   push:
-    branches: [ "main", "be/notify" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "main", "be/notify" ]
+    branches: [ "main" ]
 
 jobs:
 
