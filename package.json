@@ -16,12 +16,12 @@
     "esbuild": "^0.20.2",
     "express": "^4.19.1",
     "node-cron": "^3.0.3",
-    "nodemailer": "^6.9.13"
-  },
-  "devDependencies": {
+    "nodemailer": "^6.9.13",
     "@grpc/grpc-js": "^1.10.4",
     "@grpc/proto-loader": "^0.7.12",
-    "mongoose": "^8.2.4",
+    "mongoose": "^8.2.4"
+  },
+  "devDependencies": {
     "nodemon": "^3.1.0",
     "path": "^0.12.7"
   }
