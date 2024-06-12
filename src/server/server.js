@@ -81,6 +81,7 @@ async function getAlert(call, callback)
 async function createPost(call, callback) 
 {
     let postItem={
+        "ID": call.request.id,
         "jobName": call.request.jobName,
         "companyName": call.request.companyName,
         "location": call.request.location,

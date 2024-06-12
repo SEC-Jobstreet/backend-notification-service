@@ -19,11 +19,12 @@ message id{
     string id=1;
 }
 message post{
-    string jobName=1;
-    string companyName=2;
-    string location=3;
-    string description=4;
-    string url=5;
+    string id=1;
+    string jobName=2;
+    string companyName=3;
+    string location=4;
+    string description=5;
+    string url=6;
 }
 message alert{
     string id=1;

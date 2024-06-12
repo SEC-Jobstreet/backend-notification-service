@@ -7,9 +7,9 @@ const client = require('../../client');
 //create alert
 router.post('/alert', (req, res) =>
 {
-    const keywords=req.body.keyword.split(" ");
+    //const keywords=req.body.keyword.split(" ");
     client.createAlert({
-        "keyword": keywords,
+        "keyword": req.body.keyword,
         "city": req.body.city,
         "radius": req.body.radius,
         "userName": req.body.userName,
@@ -30,6 +30,7 @@ router.post('/alert', (req, res) =>
 router.post('/post', (req, res) =>
 {
     client.createPost({
+        "id": req.body.id,
         "jobName": req.body.jobName,
         "companyName": req.body.companyName,
         "location": req.body.location,
@@ -66,18 +67,14 @@ router.get('/alert/:userName', (req, res) => {
 //PUT
 router.put('/alert', (req, res) =>
 {
-    function stringToBoolean(str) {
-        return str === 'true';
-    }
-    const keywords=req.body.keyword.split(" ");
     client.updateAlert({
         "id": req.body.id,
-        "keyword": keywords,
+        "keyword": req.keyword,
         "city": req.body.city,
         "radius": req.body.radius,//grpc default NaN/other type into 0 & grpc auto parse string into num until meet a char
         "userName": req.body.userName,
         "email": req.body.email,
-        "on": stringToBoolean(req.body.on)
+        "on": req.body.on
     },(err, response)=>
     {
         if(err)
@@ -107,12 +104,6 @@ router.delete('/alert', (req, res) =>
             res.status(200).json({ message: response["ack"] });
         }        
     });
-});
-//Store userName and email
-router.post('/user', (req, res)=>
-{
-    userEmail.create({userName: req.body.userName, email: req.body.email});
-    res.status(200).json({ message: "ok" });
 });
 
 module.exports=router
