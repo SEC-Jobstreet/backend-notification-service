@@ -42,13 +42,14 @@ jobs:
     - name: Run remove docker container backend-notification-service
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_SERVER_USERNAME }}@${{ secrets.REMOTE_EMPLOYER_SERVER_ADDRESS }} << 'ENDSSH'
-        docker stop backend-jobstreet-notification-service-prod
-        docker rm -f backend-jobstreet-notification-service-prod
+        docker stop backend-jobstreet-notification-service-prod backend-jobstreet-notification-service-gateway-prod backend-jobstreet-notification-service-server-prod
+        docker rm -f backend-jobstreet-notification-service-prod backend-jobstreet-notification-service-gateway-prod backend-jobstreet-notification-service-server-prod
         docker rmi -f nguyenthuanit265/backend-notification-service:latest
         ENDSSH
 
     - name: Run docker container backend-notification-service
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_SERVER_USERNAME }}@${{ secrets.REMOTE_EMPLOYER_SERVER_ADDRESS }} << 'ENDSSH'
-        docker run --name backend-jobstreet-notification-service-prod --network jobstreet-network -p 4001:4001 -d nguyenthuanit265/backend-notification-service:latest
+        docker run --name backend-jobstreet-notification-service-server-prod --network jobstreet-network -p 4001:40000 -d nguyenthuanit265/backend-notification-service:latest
+        docker run --name backend-jobstreet-notification-service-gateway-prod --network jobstreet-network -p 4002:80 -d nguyenthuanit265/backend-notification-service:latest
         ENDSSH
