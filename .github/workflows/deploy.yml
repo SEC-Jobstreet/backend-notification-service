@@ -1,4 +1,4 @@
-name: Bacend Notification Service CICD
+name: Backend Notification Service CICD
 
 on:
   push:
