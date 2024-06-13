@@ -69,10 +69,11 @@ router.put('/alert', (req, res) =>
 {
     client.updateAlert({
         "id": req.body.id,
-        "keyword": req.keyword,
+        "keyword": req.body.keyword,
         "city": req.body.city,
         "radius": req.body.radius,//grpc default NaN/other type into 0 & grpc auto parse string into num until meet a char
         "userName": req.body.userName,
+        "period": req.body.period,
         "email": req.body.email,
         "on": req.body.on
     },(err, response)=>

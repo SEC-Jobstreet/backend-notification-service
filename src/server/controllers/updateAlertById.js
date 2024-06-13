@@ -13,15 +13,15 @@ async function updateAlertById(change) {
             on: change.on,
             userName: change.userName
         });
-
         // Validate the instance
         await alertInstance.validate();
-
         // If validation passes, perform the update
         await jobAlert.updateOne({ _id: change.id }, { $set: {
             keyword: change.keyword,
             city: change.city,
             radius: change.radius,
+            period: change.period,
+            email: change.email,
             on: change.on
         }});
     } catch (error) {
