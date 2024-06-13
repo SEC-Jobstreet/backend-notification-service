@@ -1,8 +1,6 @@
 'use strict';
-const jobAlert = require('../models/jobAlert');
 const dailyPost = require('../models/dailyPost');
-const { set } = require('mongoose');
-
+//
 async function sendNotifies(alert) {
     try {
         const regexPattern = alert.keyword.join('|');
@@ -14,5 +12,4 @@ async function sendNotifies(alert) {
         throw error;
     }
 }
-
 module.exports = sendNotifies;

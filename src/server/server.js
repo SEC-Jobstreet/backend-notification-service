@@ -109,6 +109,7 @@ async function updateAlert(call, callback)
         "city": call.request.city,
         "radius": call.request.radius,
         "userName": call.request.userName,
+        "period": call.request.period,
         "email": call.request.email,
         "on": call.request.on,
     }

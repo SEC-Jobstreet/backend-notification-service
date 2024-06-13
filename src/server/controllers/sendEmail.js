@@ -2,7 +2,6 @@
 //
 const nodemailer = require('nodemailer');
 const jobAlert = require('../models/jobAlert');
-const dailyPost= require('../models/dailyPost');
 const sendNotifies=require('../controllers/sendNotifies');
 //
 async function sendEmail(to, text) {
@@ -15,7 +14,6 @@ async function sendEmail(to, text) {
                 pass: "zptm zynf ukpo qjuz"
             }
         });
-
         // Define email options
         const mailOptions = {
             from: 'taotenron284@gmail.com',
@@ -23,7 +21,6 @@ async function sendEmail(to, text) {
             subject: 'JobStreet Thông báo việc làm',
             html: text
         };
-
         // Send email
         const info = await transporter.sendMail(mailOptions);
         console.log('Email sent successfully:', info.response);
@@ -43,7 +40,7 @@ async function getAlertList(period)
         throw error; // Rethrow the error for handling by the caller
     }
 }
-async function send(perriod)
+async function sendAll(perriod)
 {
     getAlertList(perriod).then(async (alertList)=>
     {
@@ -115,11 +112,11 @@ async function send(perriod)
                         <tr>
                         <td style="padding-bottom:24px">
                         <div style="color:#626262;font-size:14px;text-align:center">
-                        Bạn đã chọn nhận email Thông báo việc làm.<br> Bạn không còn quan tâm nữa? <a href="https://www.jobstreet.vn/email_alerts/A1kn-JtBg7Abc7Uzz8wV/cancel?alid=A1kn-JtBg7Abc7Uzz8wV&amp;hu=0&amp;recommended_only=false&amp;utm_campaign=job_alerts&amp;utm_medium=email&amp;utm_source=jobseeker_emails" style="text-decoration:none;color:#808080;text-decoration:underline!important" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.jobstreet.vn/email_alerts/A1kn-JtBg7Abc7Uzz8wV/cancel?alid%3DA1kn-JtBg7Abc7Uzz8wV%26hu%3D0%26recommended_only%3Dfalse%26utm_campaign%3Djob_alerts%26utm_medium%3Demail%26utm_source%3Djobseeker_emails&amp;source=gmail&amp;ust=1714711561413000&amp;usg=AOvVaw0XOajD1ja2Zeq8WOrR-emw">
+                        Bạn đã chọn nhận email Thông báo việc làm.<br> Bạn không còn quan tâm nữa? <a href="http://35.187.238.233:3000">
                         Hủy đăng ký
                         </a> 
                         hoặc 
-                        <a href="https://www.jobstreet.vn/email_alerts/A1kn-JtBg7Abc7Uzz8wV/edit?alid=A1kn-JtBg7Abc7Uzz8wV&amp;hu=0&amp;recommended_only=false&amp;utm_campaign=job_alerts&amp;utm_medium=email&amp;utm_source=jobseeker_emails" style="text-decoration:none;color:#808080;text-decoration:underline!important" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.jobstreet.vn/email_alerts/A1kn-JtBg7Abc7Uzz8wV/edit?alid%3DA1kn-JtBg7Abc7Uzz8wV%26hu%3D0%26recommended_only%3Dfalse%26utm_campaign%3Djob_alerts%26utm_medium%3Demail%26utm_source%3Djobseeker_emails&amp;source=gmail&amp;ust=1714711561413000&amp;usg=AOvVaw3NwbhqFfxt2d4qGd8mJG0C">
+                        <a href="http://35.187.238.233:3000">
                         chỉnh sửa sở thích của bạn
                         </a>
                         </div>
@@ -128,7 +125,7 @@ async function send(perriod)
                         <tr>
                         <td>
                         <div style="color:#626262;font-size:14px;text-align:center">
-                        <a href="https://www.jobstreet.vn?alid=A1kn-JtBg7Abc7Uzz8wV&amp;hu=0&amp;recommended_only=false&amp;utm_campaign=job_alerts&amp;utm_medium=email&amp;utm_source=jobseeker_emails" style="text-decoration:none;color:#0e8136" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.jobstreet.vn?alid%3DA1kn-JtBg7Abc7Uzz8wV%26hu%3D0%26recommended_only%3Dfalse%26utm_campaign%3Djob_alerts%26utm_medium%3Demail%26utm_source%3Djobseeker_emails&amp;source=gmail&amp;ust=1714711561413000&amp;usg=AOvVaw1_i01ssmPSO_liVCmPNDf6">
+                        <a href="http://35.187.238.233:3000">
                         JobStreet
                         </a>
                         &nbsp;- tìm một, thấy mười&nbsp;|&nbsp;Job Seeker Pty Ltd
@@ -145,9 +142,8 @@ async function send(perriod)
             await sendEmail(alert.email, content);
             }
         });
-        //await dailyPost.deleteMany({});
     });
 }
 //
-module.exports=send;
+module.exports=sendAll;
 
