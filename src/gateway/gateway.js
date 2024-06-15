@@ -1,9 +1,11 @@
 'use strict'
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 
 // Create an Express application
 const app = express();
+app.use(cors());
 
 //middleware
 app.use(bodyParser.json());
