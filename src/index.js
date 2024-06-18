@@ -14,18 +14,18 @@ const cron = require('node-cron');
 // Import functions
 const sendMatchPosts=require('./server/controllers/sendEmail');
 // Schedule email sending weekly at 6:00 AM on Monday
-cron.schedule('0 6 * * 1', async () => 
+cron.schedule('0 6 * * 1', () => 
     {
-        await sendMatchPosts('weekly');
+        sendMatchPosts('weekly');
     }, 
     {
         timezone: 'Asia/Ho_Chi_Minh' // Specify your timezone here
     });
 // Schedule email sending daily at 7:00 AM
-cron.schedule('0 7 * * *', async () => 
+cron.schedule('0 7 * * *', () => 
     {
-        await sendMatchPosts('daily');
-        await dailyPost.deleteMany({});
+        sendMatchPosts('daily');
+        dailyPost.deleteMany({});
     }, 
     {
         timezone: 'Asia/Ho_Chi_Minh' // Specify your timezone here
