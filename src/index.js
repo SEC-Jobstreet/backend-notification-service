@@ -22,10 +22,10 @@ cron.schedule('0 6 * * 1', () =>
         timezone: 'Asia/Ho_Chi_Minh' // Specify your timezone here
     });
 // Schedule email sending daily at 7:00 AM
-cron.schedule('0 7 * * *', () => 
+cron.schedule('0 7 * * *', async() => 
     {
         sendMatchPosts('daily');
-        dailyPost.deleteMany({});
+        await dailyPost.deleteMany({});
     }, 
     {
         timezone: 'Asia/Ho_Chi_Minh' // Specify your timezone here
